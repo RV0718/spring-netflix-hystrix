@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 8761
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+    healthcheck:
+      enabled: true
+
+management:
+  security:
+    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc.
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+
+
